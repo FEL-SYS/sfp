@@ -1,16 +1,16 @@
 {
-  "root": "apps/exp",
-  "sourceRoot": "apps/exp/src",
+  "root": "apps/koa-app",
+  "sourceRoot": "apps/koa-app/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/exp",
-        "main": "apps/exp/src/main.ts",
-        "tsConfig": "apps/exp/tsconfig.app.json",
-        "assets": ["apps/exp/src/assets"]
+        "outputPath": "dist/apps/koa-app",
+        "main": "apps/koa-app/src/main.ts",
+        "tsConfig": "apps/koa-app/tsconfig.app.json",
+        "assets": ["apps/koa-app/src/assets"]
       },
       "configurations": {
         "production": {
@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/exp/src/environments/environment.ts",
-              "with": "apps/exp/src/environments/environment.prod.ts"
+              "replace": "apps/koa-app/src/environments/environment.ts",
+              "with": "apps/koa-app/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -29,21 +29,21 @@
     "serve": {
       "executor": "@nrwl/node:execute",
       "options": {
-        "buildTarget": "exp:build"
+        "buildTarget": "koa-app:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/exp/**/*.ts"]
+        "lintFilePatterns": ["apps/koa-app/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/exp"],
+      "outputs": ["coverage/apps/koa-app"],
       "options": {
-        "jestConfig": "apps/exp/jest.config.js",
+        "jestConfig": "apps/koa-app/jest.config.js",
         "passWithNoTests": true
       }
     }

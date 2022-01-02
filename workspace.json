@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "exp": "apps/exp"
+    "feature": "libs/feature",
+    "koa-app": "apps/koa-app",
+    "shared": "libs/shared"
   }
 }
