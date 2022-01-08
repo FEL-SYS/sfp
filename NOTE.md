@@ -23,7 +23,7 @@ npx nx lint koa-app --fix
 npx nx run-many --target=lint --parallel=true --all=true
 
 Test
- npx nx test shared --codeCoverage      
+npx nx test shared --codeCoverage
 
 Done
 1.Apm
@@ -37,8 +37,9 @@ Done
 14.Testing
 
 Next
-10.Generator
+15.Linter strict no used var, no used import
 7.Typeorm
+10.Generator
 11.Separate schema in dev
 12.Separate db in prod
 

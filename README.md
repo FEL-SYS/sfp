@@ -23,4 +23,4 @@ npx nx lint koa-app --fix
 npx nx run-many --target=lint --parallel=true --all=true
 
 Test
- npx nx test shared --codeCoverage      
+npx nx test shared --codeCoverage
