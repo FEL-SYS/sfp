@@ -1,4 +1,3 @@
-import { Context, Next } from 'koa';
 import { HttpException } from '../error/HttpException';
 import { HTTP_STATUS } from '../error/HttpStatus';
 import { JwtAuth } from './JwtAuth';
@@ -21,7 +20,7 @@ describe('JwtAuth', () => {
                 authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmZWxpeGExOTk2IiwiamFiYXRhbiI6OSwiaXNfYWt0aWYiOnRydWUsImNhYmFuZ19pZCI6MSwiaXNzIjoiQnZoTHlzellhM0RrYzNucklGWWRnOUF1TGpzc3dZYjIiLCJpYXQiOjE2Mzg5ODU1NDh9.lj0I9L4RtRT_H3ktjVqnqo-YOC_9UotbLy5ubbKleRo'
             }
         };
-        await JwtAuth(ctx, () => { });
+        await JwtAuth(ctx, () => ({}));
 
         expect(ctx.user).toEqual({
             cabang_id: 1,
@@ -39,9 +38,8 @@ describe('JwtAuth', () => {
             const ctx: any = {
                 headers: {}
             };
-            const t = await JwtAuth(ctx, () => { });
+            const t = await JwtAuth(ctx, () => ({}));
         } catch (err) {
-            console.log(err)
             expect(err).toEqual(new HttpException('Unauthorized', HTTP_STATUS.UNAUTHORIZED))
         }
     })
