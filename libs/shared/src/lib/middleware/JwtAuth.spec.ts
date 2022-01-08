@@ -38,7 +38,7 @@ describe('JwtAuth', () => {
             const ctx: any = {
                 headers: {}
             };
-            const t = await JwtAuth(ctx, async () => ({}));
+            await JwtAuth(ctx, async () => ({}));
         } catch (err) {
             expect(err).toEqual(new HttpException('Unauthorized', HTTP_STATUS.UNAUTHORIZED))
         }
