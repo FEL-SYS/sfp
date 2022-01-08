@@ -1,7 +1,7 @@
 import { BadRequestException } from '@exp/shared';
 import { plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
-import { Body, Path, Post, Route, Security, Tags, Response, Query } from 'tsoa';
+import { Body, Post, Route, Security, Tags, Query } from 'tsoa';
 import Area from '../../../entity/Area';
 import AreaDto from '../dto/Area.dto';
 
