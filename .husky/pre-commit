@@ -1,5 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+npx prettier --write .
 npx nx run-many --target=lint --fix --parallel=true --all=true
 npm run swagger:koa
+git add -A .

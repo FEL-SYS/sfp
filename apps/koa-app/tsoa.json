@@ -1,15 +1,15 @@
 {
-    "entryFile": "apps/koa-app/src/main.ts",
-    "noImplicitAdditionalProperties": "throw-on-extras",
-    "controllerPathGlobs": [
-        "apps/koa-app/src/app/domain/**/*/**.rest.handler.ts"
-    ],
-    "spec": {
-        "yaml": true,
-        "outputDirectory": "apps/koa-app/src/assets",
-        "specVersion": 3
-    },
-    "routes": {
-        "routesDir": "apps/koa-app/src/assets"
-    }
+  "entryFile": "apps/koa-app/src/main.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "apps/koa-app/src/app/domain/**/*/**.rest.handler.ts"
+  ],
+  "spec": {
+    "yaml": true,
+    "outputDirectory": "apps/koa-app/src/assets",
+    "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "apps/koa-app/src/assets"
+  }
 }

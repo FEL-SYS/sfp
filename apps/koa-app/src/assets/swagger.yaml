@@ -60,8 +60,7 @@ paths:
                     name: id
                     required: false
                     schema:
-                        format: double
-                        type: number
+                        type: string
             requestBody:
                 required: true
                 content:

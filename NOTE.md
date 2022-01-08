@@ -15,16 +15,16 @@ npm run migration:run
 
 Move library
 move from lib/data to lib/feature
-npx nx g @nrwl/workspace:move --project data feature    
+npx nx g @nrwl/workspace:move --project data feature
 
 Linter
 npx nx lint [projectName] --fix
-npx nx lint koa-app --fix 
-npx nx run-many --target=lint --parallel=true --all=true   
+npx nx lint koa-app --fix
+npx nx run-many --target=lint --parallel=true --all=true
 
 Done
 1.Apm
-2.Log 
+2.Log
 3.Absolute Import
 4.Faster Reload
 3.Handler
@@ -39,7 +39,6 @@ Next
 12.Separate db in prod
 
 Test
-
 
 Backlog
 

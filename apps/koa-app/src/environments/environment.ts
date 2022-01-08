@@ -7,6 +7,6 @@ export const environment = {
     node: 'http://zetaxcloud.com:9200',
   },
   apm: {
-    serverUrl: 'http://zetaxcloud.com:8200'
-  }
+    serverUrl: 'http://zetaxcloud.com:8200',
+  },
 };
