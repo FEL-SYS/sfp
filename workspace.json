@@ -1,8 +1,8 @@
 {
-  "version": 2,
-  "projects": {
-    "feature": "libs/feature",
-    "koa-app": "apps/koa-app",
-    "shared": "libs/shared"
-  }
+	"version": 2,
+	"projects": {
+		"feature": "libs/feature",
+		"koa-app": "apps/koa-app",
+		"shared": "libs/shared"
+	}
 }

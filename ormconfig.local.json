@@ -1,13 +1,13 @@
 {
-  "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
-  "username": "root",
-  "password": "Katasandi2",
-  "database": "generic",
-  "entities": ["libs/feature/src/model/**/*.entity.js"],
-  "migrations": ["libs/feature/src/migrations/*"],
-  "cli": {
-    "migrationsDir": "libs/feature/src/migrations"
-  }
+	"type": "postgres",
+	"host": "localhost",
+	"port": 5432,
+	"username": "root",
+	"password": "Katasandi2",
+	"database": "generic",
+	"entities": ["libs/feature/src/model/**/*.entity.js"],
+	"migrations": ["libs/feature/src/migrations/*"],
+	"cli": {
+		"migrationsDir": "libs/feature/src/migrations"
+	}
 }

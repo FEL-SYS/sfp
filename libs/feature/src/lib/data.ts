@@ -1,7 +1,7 @@
 export function data(): string {
-  return 'data';
+	return 'data';
 }
 
 export interface Todo {
-  title: string;
+	title: string;
 }

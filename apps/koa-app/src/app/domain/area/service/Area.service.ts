@@ -9,13 +9,13 @@ import AreaDto from '../dto/Area.dto';
 @Route('area')
 @Tags('Area')
 export default class AreaService {
-  @Post()
-  async save(@Body() dto: AreaDto, @Query() id?: string) {
-    const data = plainToClass(AreaDto, dto);
-    const errors: ValidationError[] = await validate(data);
-    if (errors.length) throw new BadRequestException(errors);
-    const model = plainToClass(Area, data);
-    // todo save repo here
-    return model;
-  }
+	@Post()
+	async save(@Body() dto: AreaDto, @Query() id?: string) {
+		const data = plainToClass(AreaDto, dto);
+		const errors: ValidationError[] = await validate(data);
+		if (errors.length) throw new BadRequestException(errors);
+		const model = plainToClass(Area, data);
+		// todo save repo here
+		return model;
+	}
 }

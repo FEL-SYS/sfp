@@ -20,31 +20,36 @@ ApmMonitoring.init(GlobalConfig, appName);
 
 // Helmet
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com'],
-      styleSrc: [
-        "'self'",
-        "'unsafe-inline'",
-        'cdnjs.cloudflare.com',
-        'fonts.googleapis.com',
-      ],
-      fontSrc: ["'self'", 'fonts.gstatic.com'],
-      imgSrc: ["'self'", 'data:', 'online.swagger.io', 'validator.swagger.io'],
-    },
-  })
+	helmet.contentSecurityPolicy({
+		directives: {
+			defaultSrc: ["'self'"],
+			scriptSrc: ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com'],
+			styleSrc: [
+				"'self'",
+				"'unsafe-inline'",
+				'cdnjs.cloudflare.com',
+				'fonts.googleapis.com',
+			],
+			fontSrc: ["'self'", 'fonts.gstatic.com'],
+			imgSrc: [
+				"'self'",
+				'data:',
+				'online.swagger.io',
+				'validator.swagger.io',
+			],
+		},
+	})
 );
 
 // Open API
 app.use(
-  koaSwagger({
-    title: 'Koa',
-    routePrefix: '/doc',
-    swaggerOptions: {
-      spec: yamljs.load(resolve(__dirname, 'assets', 'swagger.yaml')),
-    },
-  })
+	koaSwagger({
+		title: 'Koa',
+		routePrefix: '/doc',
+		swaggerOptions: {
+			spec: yamljs.load(resolve(__dirname, 'assets', 'swagger.yaml')),
+		},
+	})
 );
 
 app.use(cors());
@@ -53,10 +58,10 @@ app.use(CatchError);
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(port, () =>
-  ApmLogger.getInstance(GlobalConfig).debug(
-    appName,
-    `${appName} running at port ${port}`,
-    `http://localhost:${port}`,
-    'App.Listen'
-  )
+	ApmLogger.getInstance(GlobalConfig).debug(
+		appName,
+		`${appName} running at port ${port}`,
+		`http://localhost:${port}`,
+		'App.Listen'
+	)
 );
