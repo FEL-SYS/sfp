@@ -1,5 +1,5 @@
 export default class SanitizeInput {
-	static process(value: string | undefined) {
+	static process(value: any) {
 		if (!value) {
 			return '';
 		}

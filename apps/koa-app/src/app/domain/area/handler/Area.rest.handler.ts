@@ -7,7 +7,7 @@ export class AreaRestHandler {
 		ctx.status = 201;
 		ctx.body = await new AreaService().save(
 			ctx.request.body,
-			ctx.request.query.id
+			ctx.request.query.id.toString()
 		);
 	}
 }

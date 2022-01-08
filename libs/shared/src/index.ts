@@ -1,8 +1,7 @@
-export * from './lib/shared';
-
 // Error
 export * from './lib/error/HttpStatus';
 export * from './lib/error/HttpException';
+export * from './lib/error/exception/BadRequestException';
 
 // Interface
 export * from './lib/interface/IConfig';

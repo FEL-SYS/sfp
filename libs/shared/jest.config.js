@@ -9,6 +9,6 @@ module.exports = {
 	transform: {
 		'^.+\\.[tj]sx?$': 'ts-jest',
 	},
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', '.json', 'package.json'],
 	coverageDirectory: '../../coverage/libs/shared',
 };

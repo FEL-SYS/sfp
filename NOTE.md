@@ -22,6 +22,9 @@ npx nx lint [projectName] --fix
 npx nx lint koa-app --fix
 npx nx run-many --target=lint --parallel=true --all=true
 
+Test
+ npx nx test shared --codeCoverage      
+
 Done
 1.Apm
 2.Log
@@ -31,6 +34,7 @@ Done
 4.DTO
 8.Husky pre commit
 13.Swagger
+14.Testing
 
 Next
 10.Generator
@@ -46,7 +50,6 @@ Backlog
 6.Redis
 9.Sqs
 13.Handler rest,grpc
-14.Testing
 15.Sonarqube
 
 Standard domain module
