@@ -11,15 +11,25 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@exp/feature": ["libs/feature/src/index.ts"],
-      "@exp/shared": ["libs/shared/src/index.ts"]
+      "@exp/feature": [
+        "libs/feature/src/index.ts"
+      ],
+      "@exp/shared": [
+        "libs/shared/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

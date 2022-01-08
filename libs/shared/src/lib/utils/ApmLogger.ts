@@ -8,7 +8,7 @@ import { IConfig } from '../interface/IConfig';
 export class ApmLogger {
 
     static instance: ApmLogger;
-    transports = [];
+    transports: any;
     logger!: Logger;
     config: IConfig
 
@@ -66,7 +66,7 @@ export class ApmLogger {
         });
     }
 
-    buildField(context: string, message: string, scope: string, data = "") {
+    buildField(context: string, message: string, scope: string, data: any = {}) {
         return {
             message: SanitizeInput.process(message),
             fields: {
@@ -78,17 +78,17 @@ export class ApmLogger {
         };
     }
 
-    info(context: string, message: string, scope: string, data = "") {
+    info(context: string, message: string, scope: string, data = {}) {
         const values = this.buildField(context, message, scope, data);
         this.logger.info(values.message, values.fields);
     }
 
-    debug(context: string, message: string, scope: string, data = "") {
+    debug(context: string, message: string, scope: string, data = {}) {
         const values = this.buildField(context, message, scope, data);
         this.logger.debug(values.message, values.fields);
     }
 
-    error(context: string, message: string, scope: string, data = "") {
+    error(context: string, message: string, scope: string, data = {}) {
         const values = this.buildField(context, message, scope, data);
         this.logger.error(values.message, values.fields);
     }

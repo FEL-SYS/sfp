@@ -1,13 +1,20 @@
+import { HTTP_STATUS } from "./HttpStatus";
+
 export class HttpException extends Error {
 
     msg: string;
     code: number;
-    errorCode: number;
+    data: any;
 
-    constructor(msg = 'Server exception', errorCode = 1000, code = 400) {
+    constructor(msg: any = 'Server exception', code = 400) {
         super();
         this.msg = msg;
         this.code = code;
-        this.errorCode = errorCode;
+    }
+}
+
+export class BadRequestException extends HttpException {
+    constructor(msg: any) {
+        super(msg, HTTP_STATUS.BAD_REQUEST);
     }
 }

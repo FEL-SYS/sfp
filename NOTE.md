@@ -1,3 +1,6 @@
+Run
+npx nx serve koa-app
+
 Create koa base
 npx nx generate @nrwl/node:application koa-app
 
@@ -16,28 +19,33 @@ npx nx g @nrwl/workspace:move --project data feature
 
 Linter
 npx nx lint [projectName] --fix
-npx nx lint koa-app --fix     
+npx nx lint koa-app --fix 
+npx nx run-many --target=lint --parallel=true --all=true   
 
 Done
 1.Apm
 2.Log 
 3.Absolute Import
 4.Faster Reload
+3.Handler
+4.DTO
+8.Husky pre commit
+13.Swagger
+
+Next
+10.Generator
+7.Typeorm
+11.Separate schema in dev
+12.Separate db in prod
 
 Test
-8.Husky pre commit
 
 
 Backlog
-3.Handler
-4.DTO
+
 5.Docker Compose
 6.Redis
-7.Typeorm
 9.Sqs
-10.Generator
-11.Separate schema in dev
-12.Separate db in prod
 13.Handler rest,grpc
 14.Testing
 15.Sonarqube

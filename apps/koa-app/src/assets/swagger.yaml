@@ -1,0 +1,73 @@
+components:
+    examples: {}
+    headers: {}
+    parameters: {}
+    requestBodies: {}
+    responses: {}
+    schemas:
+        Area:
+            properties:
+                id:
+                    type: number
+                    format: double
+                area:
+                    type: string
+            required:
+                - id
+                - area
+            type: object
+            additionalProperties: false
+        AreaDto:
+            properties:
+                id:
+                    type: number
+                    format: double
+                area:
+                    type: string
+                    example: Pontiank
+            required:
+                - id
+                - area
+            type: object
+            additionalProperties: false
+    securitySchemes: {}
+info:
+    title: exp
+    version: 0.0.0
+    license:
+        name: MIT
+    contact: {}
+openapi: 3.0.0
+paths:
+    /area:
+        post:
+            operationId: Save
+            responses:
+                '200':
+                    description: Ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Area'
+            tags:
+                - Area
+            security:
+                -
+                    api_key: []
+            parameters:
+                -
+                    in: query
+                    name: id
+                    required: false
+                    schema:
+                        format: double
+                        type: number
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/AreaDto'
+servers:
+    -
+        url: /
