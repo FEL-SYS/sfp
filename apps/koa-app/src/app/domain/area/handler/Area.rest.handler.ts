@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { Post, Route, Request, Tags } from 'tsoa';
+import { Request } from 'tsoa';
 import AreaService from '../service/Area.service';
 
 export class AreaRestHandler {
