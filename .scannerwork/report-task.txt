@@ -1,0 +1,6 @@
+projectKey=exp
+serverUrl=http://sonarqube.zetaxcloud.com
+serverVersion=8.5.1.38104
+dashboardUrl=http://sonarqube.zetaxcloud.com/dashboard?id=exp
+ceTaskId=AX4_yRs3rPTbJVCpYQZ5
+ceTaskUrl=http://sonarqube.zetaxcloud.com/api/ce/task?id=AX4_yRs3rPTbJVCpYQZ5

@@ -8,7 +8,7 @@ Create library
 npx nx g @nrwl/workspace:lib data
 
 Create migration
-npm run migration:create -- -n CreateUserTable
+npm run migration:koa:create -- -n CreateUserTable
 
 Run migration
 npm run migration:run

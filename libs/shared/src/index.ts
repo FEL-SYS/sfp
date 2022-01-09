@@ -2,6 +2,7 @@
 export * from './lib/error/HttpStatus';
 export * from './lib/error/HttpException';
 export * from './lib/error/exception/BadRequestException';
+export * from './lib/error/exception/InternalServerException';
 
 // Interface
 export * from './lib/interface/IConfig';

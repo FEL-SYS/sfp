@@ -8,8 +8,8 @@
 		"test": "nx test",
 		"dev:koa": "nx serve koa-app && npm run swagger:koa",
 		"swagger:koa": "npx tsoa spec --configuration apps/koa-app/tsoa.json",
-		"migration:create": "npx typeorm migration:create -f ormconfig.local",
-		"migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -f ormconfig.local"
+		"migration:koa:create": "npx typeorm migration:create -f apps/koa-app/ormconfig.local",
+		"migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -f apps/koa-app/ormconfig.local"
 	},
 	"private": true,
 	"dependencies": {

@@ -1,13 +1,14 @@
 import { Context } from 'koa';
 import { Request } from 'tsoa';
-import AreaService from '../service/Area.service';
+import AreaService from '../service/AreaService';
 
 export class AreaRestHandler {
 	static async create(@Request() ctx: Context) {
+		const service = new AreaService();
 		ctx.status = 201;
-		ctx.body = await new AreaService().save(
-			ctx.request.body,
-			ctx.request.query.id.toString()
+		ctx.body = await service.save(
+			ctx.request.body
 		);
+		return;
 	}
 }

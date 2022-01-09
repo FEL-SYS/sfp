@@ -1,0 +1,18 @@
+{
+	"type": "postgres",
+	"host": "localhost",
+	"port": 5432,
+	"username": "root",
+	"password": "Katasandi2",
+	"database": "exp-dev",
+	"schema": "koa",
+	"entities": [
+		"apps/koa-app/src/app/entity/**/*.js"
+	],
+	"migrations": [
+		"apps/koa-app/src/app/migrations/*"
+	],
+	"cli": {
+		"migrationsDir": "apps/koa-app/src/app/migrations"
+	}
+}

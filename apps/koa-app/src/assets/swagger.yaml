@@ -52,13 +52,9 @@ paths:
             tags:
                 - Area
             security:
-                - api_key: []
-            parameters:
-                - in: query
-                  name: id
-                  required: false
-                  schema:
-                      type: string
+                -
+                    api_key: []
+            parameters: []
             requestBody:
                 required: true
                 content:
@@ -66,4 +62,5 @@ paths:
                         schema:
                             $ref: '#/components/schemas/AreaDto'
 servers:
-    - url: /
+    -
+        url: /
