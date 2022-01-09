@@ -52,8 +52,7 @@ paths:
             tags:
                 - Area
             security:
-                -
-                    api_key: []
+                - api_key: []
             parameters: []
             requestBody:
                 required: true
@@ -62,5 +61,4 @@ paths:
                         schema:
                             $ref: '#/components/schemas/AreaDto'
 servers:
-    -
-        url: /
+    - url: /

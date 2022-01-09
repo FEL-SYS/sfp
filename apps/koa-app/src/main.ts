@@ -20,20 +20,23 @@ const app = new Koa();
 ApmMonitoring.init(GlobalConfig, appName);
 
 // Init DB
-databaseConnection.create().then(() => {
-	ApmLogger.getInstance(GlobalConfig).debug(
-		appName,
-		`DB ${appName} connected`,
-		'DB.Listen'
-	)
-}).catch(err => {
-	ApmLogger.getInstance(GlobalConfig).error(
-		appName,
-		`DB ${appName} error`,
-		'DB.Listen',
-		err
-	)
-})
+databaseConnection
+	.create()
+	.then(() => {
+		ApmLogger.getInstance(GlobalConfig).debug(
+			appName,
+			`DB ${appName} connected`,
+			'DB.Listen'
+		);
+	})
+	.catch((err) => {
+		ApmLogger.getInstance(GlobalConfig).error(
+			appName,
+			`DB ${appName} error`,
+			'DB.Listen',
+			err
+		);
+	});
 
 // Helmet
 app.use(

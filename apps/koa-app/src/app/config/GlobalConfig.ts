@@ -7,7 +7,7 @@ const GlobalConfig: IConfig = {
 	debugLogging: !environment.production,
 	elastic: environment.elastic,
 	apm: environment.apm,
-	database: environment.database
+	database: environment.database,
 };
 
 export default GlobalConfig;

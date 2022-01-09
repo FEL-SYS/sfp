@@ -13,7 +13,7 @@ export interface IConfig {
 		username: string;
 		password: string;
 		database: string;
-	},
+	};
 	apm: {
 		serverUrl: string;
 	};
