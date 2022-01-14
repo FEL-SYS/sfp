@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import { environment } from './environments/environment';
 import Koa from 'koa';
 import * as helmet from 'koa-helmet';
 import * as cors from '@koa/cors';
@@ -10,33 +9,13 @@ import router from './app/config/router';
 import GlobalConfig from './app/config/GlobalConfig';
 import { resolve } from 'path';
 import * as yamljs from 'yamljs';
-import { databaseConnection } from './app/utils/database/databaseConnection';
 
 const appName = `koa-app-${GlobalConfig.mode}`;
-const port = environment.port || 3000;
+const port = process.env.PORT || 3000;
 const app = new Koa();
 
 // Init APM
 ApmMonitoring.init(GlobalConfig, appName);
-
-// Init DB
-databaseConnection
-	.create()
-	.then(() => {
-		ApmLogger.getInstance(GlobalConfig).debug(
-			appName,
-			`DB ${appName} connected`,
-			'DB.Listen'
-		);
-	})
-	.catch((err) => {
-		ApmLogger.getInstance(GlobalConfig).error(
-			appName,
-			`DB ${appName} error`,
-			'DB.Listen',
-			err
-		);
-	});
 
 // Helmet
 app.use(

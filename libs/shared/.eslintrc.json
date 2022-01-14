@@ -1,19 +1,32 @@
 {
-	"extends": ["../../.eslintrc.json"],
-	"ignorePatterns": ["!**/*"],
+	"extends": [
+		"../../.eslintrc.json"
+	],
+	"ignorePatterns": [
+		"!**/*"
+	],
 	"overrides": [
 		{
-			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-			"rules": {
-				"no-explicit-any": "off"
-			}
-		},
-		{
-			"files": ["*.ts", "*.tsx"],
+			"files": [
+				"*.ts",
+				"*.tsx",
+				"*.js",
+				"*.jsx"
+			],
 			"rules": {}
 		},
 		{
-			"files": ["*.js", "*.jsx"],
+			"files": [
+				"*.ts",
+				"*.tsx"
+			],
+			"rules": {}
+		},
+		{
+			"files": [
+				"*.js",
+				"*.jsx"
+			],
 			"rules": {}
 		}
 	]

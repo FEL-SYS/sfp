@@ -2,12 +2,19 @@
 	"entryFile": "apps/koa-app/src/main.ts",
 	"noImplicitAdditionalProperties": "throw-on-extras",
 	"controllerPathGlobs": [
-		"apps/koa-app/src/app/domain/**/*/**.rest.handler.ts"
+		"apps/koa-app/src/app/domain/**/*RestHandler.ts"
 	],
 	"spec": {
 		"yaml": true,
 		"outputDirectory": "apps/koa-app/src/assets",
-		"specVersion": 3
+		"specVersion": 3,
+		"securityDefinitions": {
+			"bearer_auth": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "Bearer"
+			}
+		}
 	},
 	"routes": {
 		"routesDir": "apps/koa-app/src/assets"

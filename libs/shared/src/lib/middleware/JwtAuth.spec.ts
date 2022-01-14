@@ -1,3 +1,4 @@
+import { InternalServerException } from '../error/exception/InternalServerException';
 import { HttpException } from '../error/HttpException';
 import { HTTP_STATUS } from '../error/HttpStatus';
 import { JwtAuth } from './JwtAuth';
@@ -31,6 +32,21 @@ describe('JwtAuth', () => {
 			jabatan: 9,
 			username: 'felixa1996',
 		});
+	});
+
+	it('should return internal error', async () => {
+		try {
+			const ctx: any = {
+				headers: {
+					authorization: 'wrongtoken'
+				},
+			};
+			await JwtAuth(ctx, async () => ({}));
+		} catch (err) {
+			expect(err).toEqual(
+				new InternalServerException(err)
+			);
+		}
 	});
 
 	it('should return unauthorized', async () => {

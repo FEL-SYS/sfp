@@ -35,23 +35,24 @@ Done
 8.Husky pre commit
 13.Swagger
 14.Testing
-
-Next
-15.Linter strict no used var, no used import
 7.Typeorm
-10.Generator
 11.Separate schema in dev
 12.Separate db in prod
+15.Sonarqube
+16.Remove env
+
+Next
+5.Docker Compose
+13.Handler rest,grpc
+
+Progress
+1.Enh Testing
+10.Generator
+9.Sqs
 
 Test
 
 Backlog
-
-5.Docker Compose
-6.Redis
-9.Sqs
-13.Handler rest,grpc
-15.Sonarqube
 
 Standard domain module
 1.DTO
