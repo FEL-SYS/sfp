@@ -1,6 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+npx prettier --write .
 npx nx run-many --target=lint --fix --parallel=true --all=true
 # npx nx affected:test --all --codeCoverage --skip-nx-cache
 npm run swagger:koa
