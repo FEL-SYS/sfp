@@ -22,7 +22,12 @@ export class AreaRestHandler {
 		const { search } = ctx.query;
 		const service = new AreaService();
 		ctx.status = 200;
-		ctx.body = await service.list(+perPage, +lastId, +sort, search === undefined ? undefined : String(search));
+		ctx.body = await service.list(
+			+perPage,
+			+lastId,
+			+sort,
+			search === undefined ? undefined : String(search)
+		);
 	}
 
 	static async view(@Request() ctx: Context) {

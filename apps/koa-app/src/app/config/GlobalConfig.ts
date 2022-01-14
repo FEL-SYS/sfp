@@ -8,7 +8,7 @@ const GlobalConfig = {
 		node: process.env.ELASTIC_NODE || 'http://localhost:9200',
 	},
 	apm: {
-		serverUrl: process.env.APM_SERVERURL || 'http://localhost:8200'
+		serverUrl: process.env.APM_SERVERURL || 'http://localhost:8200',
 	},
 };
 

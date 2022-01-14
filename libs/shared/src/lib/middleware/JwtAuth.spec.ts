@@ -38,14 +38,12 @@ describe('JwtAuth', () => {
 		try {
 			const ctx: any = {
 				headers: {
-					authorization: 'wrongtoken'
+					authorization: 'wrongtoken',
 				},
 			};
 			await JwtAuth(ctx, async () => ({}));
 		} catch (err) {
-			expect(err).toEqual(
-				new InternalServerException(err)
-			);
+			expect(err).toEqual(new InternalServerException(err));
 		}
 	});
 
