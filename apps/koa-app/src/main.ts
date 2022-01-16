@@ -64,3 +64,4 @@ app.listen(port, () =>
 		'App.Listen'
 	)
 );
+export { app };

@@ -53,10 +53,10 @@ export class AreaService {
 	@Security('bearer_auth')
 	@Put()
 	async update(@Body() dto: AreaDto | any): Promise<Area> {
-		await this.view(dto.id);
 		const data = plainToClass(AreaDto, dto);
 		const errors: ValidationError[] = await validate(data);
 		if (errors.length) throw new BadRequestException(errors);
+		await this.view(dto.id);
 		const model = plainToClass(Area, data);
 		const where = { id: model.id };
 		const result = await prisma.area.update({ where, data: model });
@@ -109,7 +109,7 @@ export class AreaService {
 
 	@Security('bearer_auth')
 	@Delete('{id}')
-	async delete(@Path() id: number): Promise<void> {
+	async delete(@Path() id: number): Promise<number> {
 		await this.view(id);
 		const where = { id };
 		const data = await prisma.area.delete({ where });

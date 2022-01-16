@@ -3,14 +3,14 @@ import { Request } from 'tsoa';
 import { AreaService } from '../service/AreaService';
 
 export class AreaRestHandler {
-	static async create(@Request() ctx: Context) {
+	static async create(@Request() ctx: any) {
 		const service = new AreaService();
 		ctx.status = 201;
 		ctx.body = await service.create(ctx.request.body);
 		return;
 	}
 
-	static async update(@Request() ctx: Context) {
+	static async update(@Request() ctx: any) {
 		const service = new AreaService();
 		ctx.status = 201;
 		ctx.body = await service.update(ctx.request.body);
@@ -30,7 +30,7 @@ export class AreaRestHandler {
 		);
 	}
 
-	static async view(@Request() ctx: Context) {
+	static async view(@Request() ctx: any) {
 		const { id } = ctx.params;
 		const service = new AreaService();
 		ctx.status = 200;

@@ -1,5 +1,5 @@
 import Router = require('@koa/router');
-import { AreaRestHandler } from '../domain/area/handler/AreaRestHandler';
+import { AreaRestHandler } from '../modules/area/handler/AreaRestHandler';
 
 const router = new Router();
 

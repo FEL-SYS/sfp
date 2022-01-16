@@ -1,7 +1,9 @@
 {
 	"entryFile": "apps/koa-app/src/main.ts",
 	"noImplicitAdditionalProperties": "throw-on-extras",
-	"controllerPathGlobs": ["apps/koa-app/src/app/domain/**/*RestHandler.ts"],
+	"controllerPathGlobs": [
+		"apps/koa-app/src/app/modules/**/*RestHandler.ts"
+	],
 	"spec": {
 		"yaml": true,
 		"outputDirectory": "apps/koa-app/src/assets",
