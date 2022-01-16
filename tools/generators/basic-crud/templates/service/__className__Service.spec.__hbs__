@@ -1,0 +1,105 @@
+import { prismaMock } from '../../../utils/database/prismaSingleton';
+import { <%=className%>Service } from './<%=className%>Service';
+
+describe('<%=className%>Service', () => {
+	const payloadList = {
+		perPage: 1,
+		lastId: 1,
+		sort: 1,
+		search: 'search',
+	};
+	const responseList = {
+		total: 1,
+		perPage: 1,
+		data: [
+			{
+				id: 1,
+				<%=field%>: 'Pontianak',
+			},
+		],
+	};
+	const model = {
+		id: 1,
+		<%=field%>: '<%=className%>',
+	};
+
+	it('should list sort asc', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.count.mockResolvedValue(responseList.total);
+		prismaMock.<%=entity%>.findMany.mockResolvedValue(responseList.data);
+		await expect(
+			service.list(
+				payloadList.perPage,
+				payloadList.lastId,
+				payloadList.sort
+			)
+		).resolves.toEqual(responseList);
+	});
+
+	it('should list sort desc', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.count.mockResolvedValue(responseList.total);
+		prismaMock.<%=entity%>.findMany.mockResolvedValue(responseList.data);
+		await expect(
+			service.list(payloadList.perPage, payloadList.lastId, 0)
+		).resolves.toEqual(responseList);
+	});
+
+	it('should create validation error', async () => {
+		const service = new <%=className%>Service();
+		const model = {
+			id: 1,
+			<%=field%>_unknown: '<%=className%>',
+		};
+		await expect(service.create(model)).rejects.toThrow('');
+	});
+
+	it('should success create', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.create.mockResolvedValue(model);
+		await expect(service.create(model)).resolves.toEqual(model);
+	});
+
+	it('should update validation error', async () => {
+		const service = new <%=className%>Service();
+		const model = {
+			id: 1,
+			<%=field%>_unknown: '<%=className%>',
+		};
+		await expect(service.update(model)).rejects.toThrow('');
+	});
+
+	it('should success update', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.findFirst.mockResolvedValue(model);
+		prismaMock.<%=entity%>.update.mockResolvedValue(model);
+		await expect(service.update(model)).resolves.toEqual(model);
+	});
+
+	it('should success return view not found', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.findFirst.mockResolvedValue(undefined);
+		await expect(service.view(model.id)).rejects.toThrow('');
+	});
+
+	it('should success return view', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.findFirst.mockResolvedValue(model);
+		await expect(service.view(model.id)).resolves.toEqual(model);
+	});
+
+	it('should failed delete', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.findFirst.mockResolvedValue(model);
+		prismaMock.<%=entity%>.delete.mockResolvedValue(model);
+		await expect(service.delete(model.id)).rejects.toThrow('');
+	});
+
+	it('should success delete', async () => {
+		const service = new <%=className%>Service();
+		prismaMock.<%=entity%>.findFirst.mockResolvedValue(model);
+		prismaMock.<%=entity%>.delete.mockResolvedValue(undefined);
+		const result = await service.delete(model.id);
+		expect(result).toEqual(undefined);
+	});
+});

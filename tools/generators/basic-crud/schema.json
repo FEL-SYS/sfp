@@ -1,0 +1,49 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"cli": "nx",
+	"$id": "basic-crud",
+	"type": "object",
+	"properties": {
+		"project": {
+			"type": "string",
+			"description": "Project",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			}
+		},
+		"module": {
+			"type": "string",
+			"description": "Module",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			}
+		},
+		"className": {
+			"type": "string",
+			"description": "Class name",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			}
+		},
+		"entity": {
+			"type": "string",
+			"description": "Prisma entity name",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			}
+		},
+		"field": {
+			"type": "string",
+			"description": "Field name",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			}
+		}
+	},
+	"required": ["project", "module", "className", "entity", "field"]
+}
