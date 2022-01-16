@@ -54,7 +54,7 @@ components:
             scheme: bearer
             bearerFormat: Bearer
 info:
-    title: exp
+    title: ts-next
     version: 0.0.0
     license:
         name: MIT
