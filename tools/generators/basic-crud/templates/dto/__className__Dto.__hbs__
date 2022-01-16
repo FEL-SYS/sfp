@@ -1,0 +1,8 @@
+export default class <%=className%>Dto {
+	id: number;
+
+	/**
+	 * @example "todo need change"
+	 */
+	<%=className%>: string;
+}
