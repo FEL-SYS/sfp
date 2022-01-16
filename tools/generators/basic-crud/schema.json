@@ -45,11 +45,5 @@
 			}
 		}
 	},
-	"required": [
-		"project",
-		"module",
-		"className",
-		"entity",
-		"field"
-	]
+	"required": ["project", "module", "className", "entity", "field"]
 }

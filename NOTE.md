@@ -26,8 +26,8 @@ Test
 npx nx test shared --codeCoverage
 
 Generator
-Create generator = npx nx g @nrwl/workspace:workspace-generator [name] 
-Dry run =  npx nx workspace-generator basic-crud --project=koa-app --module=student --className=Student --entity=student --field=student
+Create generator = npx nx g @nrwl/workspace:workspace-generator [name]
+Dry run = npx nx workspace-generator basic-crud --project=koa-app --module=student --className=Student --entity=student --field=student
 Create = nx workspace-generator basic-crud --project=[project] --module=[module] --className=[ClassName] --entity=[entity] --field=[field]
 
 Done
