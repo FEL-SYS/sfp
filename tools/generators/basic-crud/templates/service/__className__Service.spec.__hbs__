@@ -47,11 +47,11 @@ describe('<%=className%>Service', () => {
 
 	it('should create validation error', async () => {
 		const service = new <%=className%>Service();
-		const model = {
+		const modelError = {
 			id: 1,
 			<%=field%>_unknown: '<%=className%>',
 		};
-		await expect(service.create(model)).rejects.toThrow('');
+		await expect(service.create(modelError)).rejects.toThrow('');
 	});
 
 	it('should success create', async () => {
@@ -62,11 +62,11 @@ describe('<%=className%>Service', () => {
 
 	it('should update validation error', async () => {
 		const service = new <%=className%>Service();
-		const model = {
+		const modelError = {
 			id: 1,
 			<%=field%>_unknown: '<%=className%>',
 		};
-		await expect(service.update(model)).rejects.toThrow('');
+		await expect(service.update(modelError)).rejects.toThrow('');
 	});
 
 	it('should success update', async () => {
