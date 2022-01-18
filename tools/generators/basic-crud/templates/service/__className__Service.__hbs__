@@ -15,7 +15,7 @@ import {
 } from 'tsoa';
 import <%=className%> from '../../../entity/<%=className%>';
 import <%=className%>Dto from '../dto/<%=className%>Dto';
-import prisma from '../../../utils/database/prismaDatabaseConnection';
+import prisma from '../../../utils/database/prisma';
 
 export class PaginationResult<Type> {
 	total: number;

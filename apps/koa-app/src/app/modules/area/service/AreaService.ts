@@ -15,7 +15,7 @@ import {
 } from 'tsoa';
 import Area from '../../../entity/Area';
 import AreaDto from '../dto/AreaDto';
-import prisma from '../../../utils/database/prismaDatabaseConnection';
+import prisma from '../../../utils/database/prisma';
 
 export class PaginationResult<Type> {
 	total: number;

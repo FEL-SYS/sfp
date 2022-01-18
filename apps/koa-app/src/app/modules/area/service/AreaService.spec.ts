@@ -47,11 +47,11 @@ describe('AreaService', () => {
 
 	it('should create validation error', async () => {
 		const service = new AreaService();
-		const model = {
+		const modelError = {
 			id: 1,
 			area_unknown: 'Area',
 		};
-		await expect(service.create(model)).rejects.toThrow('');
+		await expect(service.create(modelError)).rejects.toThrow('');
 	});
 
 	it('should success create', async () => {
@@ -62,11 +62,11 @@ describe('AreaService', () => {
 
 	it('should update validation error', async () => {
 		const service = new AreaService();
-		const model = {
+		const modelError = {
 			id: 1,
 			area_unknown2: 'Area',
 		};
-		await expect(service.update(model)).rejects.toThrow('');
+		await expect(service.update(modelError)).rejects.toThrow('');
 	});
 
 	it('should success update', async () => {
