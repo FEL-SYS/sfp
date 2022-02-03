@@ -19,6 +19,7 @@
 						]
 					}
 				],
+				"@typescript-eslint/ban-ts-comment": "off",
 				"no-unused-vars": "error"
 			}
 		},

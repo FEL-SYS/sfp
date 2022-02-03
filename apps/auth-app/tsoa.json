@@ -1,0 +1,20 @@
+{
+	"entryFile": "apps/auth-app/src/main.ts",
+	"noImplicitAdditionalProperties": "throw-on-extras",
+	"controllerPathGlobs": ["apps/auth-app/src/app/modules/**/*RestHandler.ts"],
+	"spec": {
+		"yaml": true,
+		"outputDirectory": "apps/auth-app/src/assets",
+		"specVersion": 3,
+		"securityDefinitions": {
+			"bearer_auth": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "Bearer"
+			}
+		}
+	},
+	"routes": {
+		"routesDir": "apps/auth-app/src/assets"
+	}
+}

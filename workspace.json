@@ -1,6 +1,7 @@
 {
 	"version": 2,
 	"projects": {
+		"auth-app": "apps/auth-app",
 		"feature": "libs/feature",
 		"koa-app": "apps/koa-app",
 		"shared": "libs/shared"

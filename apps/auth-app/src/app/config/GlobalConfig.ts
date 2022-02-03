@@ -1,6 +1,6 @@
 const GlobalConfig = {
 	mode: process.env.NODE_ENV || 'development',
-	portRpc: process.env.PORT_RPC,
+	urlRpc: process.env.URL_RPC || 'localhost:5002',
 	isProduction: process.env.NODE_ENV === 'production',
 	debugLogging: process.env.NODE_ENV !== 'production',
 	elastic: {
