@@ -6,14 +6,18 @@
 		"start": "nx serve",
 		"build": "nx build",
 		"test": "nx test",
-		"dev:koa:syncdb": "(cd apps/koa-app && npx prisma migrate dev)",
+		"dev:koa:syncdb": "(cd apps/koa-app && npx prisma migrate dev && npx prisma generate)",
+		"dev:auth:syncdb": "(cd apps/auth-app && npx prisma migrate dev && npx prisma generate)",
 		"dev:koa": "nx serve koa-app && npm run swagger:koa",
 		"swagger:koa": "npx tsoa spec --configuration apps/koa-app/tsoa.json",
+		"swagger:auth": "npx tsoa spec --configuration apps/auth-app/tsoa.json",
 		"migration:koa:create": "npx typeorm migration:create -f apps/koa-app/ormconfig.local",
-		"migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -f apps/koa-app/ormconfig.local"
+		"migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -f apps/koa-app/ormconfig.local",
+		"prepare": "husky install"
 	},
 	"private": true,
 	"dependencies": {
+		"@grpc/grpc-js": "^1.2.2",
 		"@koa/cors": "^3.1.0",
 		"@koa/router": "^10.0.0",
 		"@prisma/client": "^3.8.1",
@@ -24,7 +28,9 @@
 		"class-transformer": "^0.5.1",
 		"class-validator": "^0.13.2",
 		"elastic-apm-node": "^3.26.0",
-		"husky": "^7.0.4",
+		"grpc": "^1.24.11",
+		"grpc-tools": "^1.10.0",
+		"grpc_tools_node_protoc_ts": "^5.0.1",
 		"jsonwebtoken": "^8.5.1",
 		"koa": "^2.13.4",
 		"koa-bodyparser": "^4.3.0",
@@ -48,6 +54,7 @@
 		"@nrwl/nx-cloud": "latest",
 		"@nrwl/tao": "13.4.1",
 		"@nrwl/workspace": "13.4.1",
+		"@types/google-protobuf": "^3.15.5",
 		"@types/jest": "27.0.2",
 		"@types/koa-router": "^7.4.4",
 		"@types/koa__router": "^8.0.11",
@@ -57,11 +64,17 @@
 		"@typescript-eslint/parser": "~5.3.0",
 		"eslint": "8.2.0",
 		"eslint-config-prettier": "8.1.0",
+		"husky": "^7.0.4",
 		"jest": "27.2.3",
 		"jest-mock-extended": "^2.0.4",
+		"lint-staged": "^12.3.3",
 		"prettier": "^2.3.1",
 		"prisma": "^3.8.1",
 		"ts-jest": "^27.0.5",
 		"typescript": "~4.4.3"
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix",
+		"*.{js,css,md}": "prettier --write"
 	}
 }

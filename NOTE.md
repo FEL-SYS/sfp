@@ -1,17 +1,12 @@
 Run
-npx nx serve koa-app
+npx nx serve koa-app --inspect false
+npx nx serve auth-app --inspect false
 
 Create koa base
 npx nx generate @nrwl/node:application koa-app
 
 Create library
 npx nx g @nrwl/workspace:lib data
-
-Create migration
-npm run migration:koa:create -- -n CreateUserTable
-
-Run migration
-npm run migration:run
 
 Move library
 move from lib/data to lib/feature
@@ -30,6 +25,9 @@ Create generator = npx nx g @nrwl/workspace:workspace-generator [name]
 Dry run = npx nx workspace-generator basic-crud --project=koa-app --module=student --className=Student --entity=student --field=student
 Create = nx workspace-generator basic-crud --project=[project] --module=[module] --className=[ClassName] --entity=[entity] --field=[field]
 
+RPC
+sh ./build-proto.sh ./libs/feature/proto/song.proto ./libs/feature/src/proto
+
 Done
 1.Apm
 2.Log
@@ -45,23 +43,18 @@ Done
 12.Separate db in prod
 15.Sonarqube
 16.Remove env
+13.Handler rest,grpc
+10.Generator
+1.Enh Testing
 
 Next
 5.Docker Compose
-13.Handler rest,grpc
 
 Progress
-1.Enh Testing
-10.Generator
 9.Sqs
+Rapikan pagination
+Cek ulang generator berikan lowercase
 
 Test
 
 Backlog
-
-Standard domain module
-1.DTO
-2.Handler (rest,grpc,sqs)
-3.Service = connect dto to handler
-4.Repository = connect to db
-Process handler -> dto -> service -> repository;

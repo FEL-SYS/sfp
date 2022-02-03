@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+
 import Koa from 'koa';
 import * as helmet from 'koa-helmet';
 import * as cors from '@koa/cors';
@@ -9,10 +10,12 @@ import router from './app/config/router';
 import GlobalConfig from './app/config/GlobalConfig';
 import { resolve } from 'path';
 import * as yamljs from 'yamljs';
+import { RpcObserver } from './app/modules/RpcObserver';
 
-const appName = `koa-app-${GlobalConfig.mode}`;
+const appName = `auth-app-${GlobalConfig.mode}`;
 const port = process.env.PORT || 3000;
 const app = new Koa();
+const rpc = new RpcObserver(appName);
 
 // Init APM
 ApmMonitoring.init(GlobalConfig, appName);
@@ -56,13 +59,15 @@ app.use(bodyParser());
 app.use(CatchError);
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(port, () =>
+app.listen(port, () => {
 	ApmLogger.getInstance(GlobalConfig).debug(
 		appName,
 		`${appName} running at port ${port}`,
 		`http://localhost:${port}`,
 		'App.Listen'
-	)
-);
+	);
+});
 
-export { app };
+rpc.init();
+
+export { app, rpc };

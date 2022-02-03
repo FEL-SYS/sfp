@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package songs;
+
+import "google/protobuf/empty.proto";
+
+message Song {
+  int32 id = 1;
+  string title = 2;
+}
+
+service Songs {
+    rpc GetSong(google.protobuf.Empty) returns (Song) {};
+}
