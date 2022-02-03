@@ -52,7 +52,6 @@ Next
 
 Progress
 9.Sqs
-Rapikan pagination
 Cek ulang generator berikan lowercase
 
 Test
