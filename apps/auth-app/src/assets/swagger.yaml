@@ -12,40 +12,93 @@ components:
                     format: double
                 username:
                     type: string
+                email:
+                    type: string
+                type:
+                    type: string
+                active:
+                    type: boolean
+                password:
+                    type: string
             required:
                 - id
                 - username
+                - email
+                - type
+                - active
+                - password
             type: object
             additionalProperties: false
-        UserDto:
+        UserRegisterDto:
             properties:
-                id:
-                    type: number
-                    format: double
-                User:
+                username:
                     type: string
-                    example: 'todo need change'
+                    example: username
+                email:
+                    type: string
+                    example: email@gmail.cm
+                type:
+                    type: string
+                    example: administrator
+                password:
+                    type: string
+                    example: password
             required:
-                - id
-                - User
+                - username
+                - email
+                - type
+                - password
             type: object
             additionalProperties: false
-        PaginationResult_User_:
+        UserViewDto:
             properties:
-                total:
-                    type: number
-                    format: double
-                perPage:
-                    type: number
-                    format: double
-                data:
-                    items:
-                        $ref: '#/components/schemas/User'
-                    type: array
+                username:
+                    type: string
+                    example: username
+                email:
+                    type: string
+                    example: email@gmail.cm
+                type:
+                    type: string
+                    example: administrator
+                password:
+                    type: string
+                    example: password
+                accessToken:
+                    type: string
+                    example: access_token
             required:
-                - total
-                - perPage
-                - data
+                - username
+                - email
+                - type
+                - password
+                - accessToken
+            type: object
+            additionalProperties: false
+        Error:
+            properties:
+                name:
+                    type: string
+                message:
+                    type: string
+                stack:
+                    type: string
+            required:
+                - name
+                - message
+            type: object
+            additionalProperties: false
+        UserLoginDto:
+            properties:
+                username:
+                    type: string
+                    example: username
+                password:
+                    type: string
+                    example: password
+            required:
+                - username
+                - password
             type: object
             additionalProperties: false
     securitySchemes:
@@ -61,9 +114,59 @@ info:
     contact: {}
 openapi: 3.0.0
 paths:
-    /user:
+    /auth/register:
         post:
-            operationId: Create
+            operationId: Register
+            responses:
+                '200':
+                    description: Ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+            tags:
+                - User
+            security:
+                - api_key: []
+            parameters: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            anyOf:
+                                - $ref: '#/components/schemas/UserRegisterDto'
+                                - {}
+    /auth/login:
+        post:
+            operationId: Login
+            responses:
+                '200':
+                    description: Ok
+                    content:
+                        application/json:
+                            schema:
+                                anyOf:
+                                    - {
+                                          $ref: '#/components/schemas/UserViewDto',
+                                      }
+                                    - { $ref: '#/components/schemas/Error' }
+            tags:
+                - User
+            security:
+                - api_key: []
+            parameters: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            anyOf:
+                                - $ref: '#/components/schemas/UserLoginDto'
+                                - {}
+    /auth/me:
+        get:
+            operationId: Me
             responses:
                 '200':
                     description: Ok
@@ -76,115 +179,5 @@ paths:
             security:
                 - bearer_auth: []
             parameters: []
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            anyOf:
-                                - $ref: '#/components/schemas/UserDto'
-                                - {}
-        put:
-            operationId: Update
-            responses:
-                '200':
-                    description: Ok
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/User'
-            tags:
-                - User
-            security:
-                - bearer_auth: []
-            parameters: []
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            anyOf:
-                                - $ref: '#/components/schemas/UserDto'
-                                - {}
-    '/user/{perPage}/{lastId}/{sort}':
-        get:
-            operationId: List
-            responses:
-                '200':
-                    description: Ok
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/PaginationResult_User_'
-            tags:
-                - User
-            security:
-                - bearer_auth: []
-            parameters:
-                - in: path
-                  name: perPage
-                  required: true
-                  schema:
-                      format: double
-                      type: number
-                - in: path
-                  name: lastId
-                  required: true
-                  schema:
-                      format: double
-                      type: number
-                - in: path
-                  name: sort
-                  required: true
-                  schema:
-                      format: double
-                      type: number
-                - in: query
-                  name: search
-                  required: false
-                  schema:
-                      type: string
-    '/user/{id}':
-        get:
-            operationId: View
-            responses:
-                '200':
-                    description: Ok
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/User'
-            tags:
-                - User
-            security:
-                - bearer_auth: []
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  schema:
-                      format: double
-                      type: number
-        delete:
-            operationId: Delete
-            responses:
-                '200':
-                    description: Ok
-                    content:
-                        application/json:
-                            schema:
-                                type: number
-                                format: double
-            tags:
-                - User
-            security:
-                - bearer_auth: []
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  schema:
-                      format: double
-                      type: number
 servers:
     - url: /
