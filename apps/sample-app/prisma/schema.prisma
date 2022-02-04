@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/client-sample"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model sample {
+  id          Int    @id(map: "PK_sample_id") @default(autoincrement())
+  sample_name String @unique @db.VarChar
+}
