@@ -4,6 +4,7 @@
 		"auth-app": "apps/auth-app",
 		"feature": "libs/feature",
 		"koa-app": "apps/koa-app",
+		"sample-app": "apps/sample-app",
 		"shared": "libs/shared"
 	}
 }

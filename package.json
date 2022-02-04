@@ -8,11 +8,11 @@
 		"test": "nx test",
 		"dev:koa:syncdb": "(cd apps/koa-app && npx prisma migrate dev && npx prisma generate)",
 		"dev:auth:syncdb": "(cd apps/auth-app && npx prisma migrate dev && npx prisma generate)",
+		"dev:sample:syncdb": "(cd apps/sample-app && npx prisma migrate dev && npx prisma generate)",
 		"dev:koa": "nx serve koa-app && npm run swagger:koa",
 		"swagger:koa": "npx tsoa spec --configuration apps/koa-app/tsoa.json",
 		"swagger:auth": "npx tsoa spec --configuration apps/auth-app/tsoa.json",
-		"migration:koa:create": "npx typeorm migration:create -f apps/koa-app/ormconfig.local",
-		"migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -f apps/koa-app/ormconfig.local",
+		"swagger:sample": "npx tsoa spec --configuration apps/sample-app/tsoa.json",
 		"prepare": "husky install"
 	},
 	"private": true,
