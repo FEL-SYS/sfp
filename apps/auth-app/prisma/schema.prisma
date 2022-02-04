@@ -9,6 +9,10 @@ datasource db {
 }
 
 model user {
-  id       Int    @id(map: "PK_user_id") @default(autoincrement())
-  username String @unique @db.VarChar
+  id       Int     @id(map: "PK_user_id") @default(autoincrement())
+  username String  @unique @db.VarChar
+  email    String  @unique @db.VarChar
+  type     String  @db.VarChar
+  active   Boolean @default(true)
+  password String  @db.VarChar
 }

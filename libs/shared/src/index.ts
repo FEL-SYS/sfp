@@ -10,6 +10,7 @@ export * from './lib/interface/IConfig';
 // Middleware
 export * from './lib/middleware/CatchError';
 export * from './lib/middleware/JwtAuth';
+export * from './lib/middleware/JwtSign';
 
 // Utils
 export * from './lib/utils/ApmLogger';

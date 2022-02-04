@@ -1,46 +1,24 @@
-import { Context } from 'koa';
 import { Request } from 'tsoa';
 import { UserService } from '../service/UserService';
 
 export class UserRestHandler {
-	static async create(@Request() ctx: any) {
+	static async register(@Request() ctx: any) {
 		const service = new UserService();
 		ctx.status = 201;
-		ctx.body = await service.create(ctx.request.body);
+		ctx.body = await service.register(ctx.request.body);
 		return;
 	}
 
-	static async update(@Request() ctx: any) {
+	static async login(@Request() ctx: any) {
 		const service = new UserService();
 		ctx.status = 201;
-		ctx.body = await service.update(ctx.request.body);
+		ctx.body = await service.login(ctx.request.body);
 		return;
 	}
 
-	static async list(@Request() ctx: Context) {
-		const { perPage, lastId, sort } = ctx.params;
-		const { search } = ctx.query;
+	static async me(@Request() ctx: any) {
 		const service = new UserService();
 		ctx.status = 200;
-		ctx.body = await service.list(
-			+perPage,
-			+lastId,
-			+sort,
-			search === undefined ? undefined : String(search)
-		);
-	}
-
-	static async view(@Request() ctx: any) {
-		const { id } = ctx.params;
-		const service = new UserService();
-		ctx.status = 200;
-		ctx.body = await service.view(+id);
-	}
-
-	static async delete(@Request() ctx: Context) {
-		const { id } = ctx.params;
-		const service = new UserService();
-		ctx.status = 204;
-		ctx.body = await service.delete(+id);
+		ctx.body = await service.me(ctx.user);
 	}
 }

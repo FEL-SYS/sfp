@@ -1,102 +1,72 @@
-import { BadRequestException, HttpException, HTTP_STATUS } from '@exp/shared';
-import { plainToClass } from 'class-transformer';
-import { validate, ValidationError } from 'class-validator';
 import {
-	Body,
-	Delete,
-	Get,
-	Path,
-	Post,
-	Put,
-	Query,
-	Route,
-	Security,
-	Tags,
-} from 'tsoa';
+	BadRequestException,
+	HttpException,
+	HTTP_STATUS,
+	JwtSign,
+} from '@exp/shared';
+import { plainToClass, classToPlain, instanceToPlain } from 'class-transformer';
+import * as bcrypt from 'bcryptjs';
+import { validate, ValidationError } from 'class-validator';
+import { Body, Get, Path, Post, Route, Security, Tags } from 'tsoa';
 import User from '../../../entity/User';
-import UserDto from '../dto/UserDto';
 import prisma from '../../../utils/database/prisma';
-
-export class PaginationResult<Type> {
-	total: number;
-	perPage: number;
-	data: Array<Type>;
-
-	constructor(total: number, perPage: number, data: Array<Type>) {
-		this.total = total;
-		this.perPage = perPage;
-		this.data = data;
-	}
-}
-
-export class Pagination {
-	static result<Type>(total: number, perPage: number, data: Array<Type>) {
-		return new PaginationResult<Type>(total, perPage, data);
-	}
-}
+import UserRegisterDto from '../dto/UserRegisterDto';
+import { Constant } from '../../../utils/constant/Constant';
+import UserLoginDto from '../dto/UserLoginDto';
+import UserViewDto from '../dto/UserViewDto';
 
 @Security('api_key')
-@Route('user')
+@Route('auth')
 @Tags('User')
 export class UserService {
-	@Security('bearer_auth')
-	@Post()
-	async create(@Body() dto: UserDto | any): Promise<User> {
-		const data = plainToClass(UserDto, dto);
+	@Post('register')
+	async register(@Body() dto: UserRegisterDto | any): Promise<User> {
+		const data = plainToClass(UserRegisterDto, dto);
 		const errors: ValidationError[] = await validate(data);
 		if (errors.length) throw new BadRequestException(errors);
 		const model = plainToClass(User, data);
+		model.password = await bcrypt.hash(
+			data.password,
+			Constant.AUTH_HASH_SALT
+		);
 		const result = await prisma.user.create({ data: model });
 		return result;
 	}
 
-	@Security('bearer_auth')
-	@Put()
-	async update(@Body() dto: UserDto | any): Promise<User> {
-		const data = plainToClass(UserDto, dto);
-		const errors: ValidationError[] = await validate(data);
-		if (errors.length) throw new BadRequestException(errors);
-		await this.view(dto.id);
-		const model = plainToClass(User, data);
-		const where = { id: model.id };
-		const result = await prisma.user.update({ where, data: model });
-		return result;
+	@Post('login')
+	async login(@Body() dto: UserLoginDto | any): Promise<UserViewDto | Error> {
+		const { username, password } = plainToClass(UserLoginDto, dto);
+		const where = { username };
+		const model = await prisma.user.findFirst({ where });
+
+		if (!model) {
+			throw new HttpException(
+				'User tidak ditemukan',
+				HTTP_STATUS.NOT_FOUND
+			);
+		}
+
+		if (!model.active) {
+			throw new HttpException('User tidak aktif', HTTP_STATUS.NOT_FOUND);
+		}
+
+		const passwordResult = await bcrypt.compare(password, model.password);
+		if (!passwordResult) {
+			throw new HttpException(
+				'Katasandi tidak cocok',
+				HTTP_STATUS.NOT_FOUND
+			);
+		}
+
+		const result = plainToClass(UserViewDto, model);
+		const accessToken = JwtSign(instanceToPlain(result));
+		return { ...result, accessToken };
 	}
 
 	@Security('bearer_auth')
-	@Get('{perPage}/{lastId}/{sort}')
-	async list(
-		@Path() perPage: number,
-		@Path() lastId: number,
-		@Path() sort: number,
-		@Query() search?: string
-	): Promise<PaginationResult<User>> {
-		const where = {
-			username: {
-				contains: search,
-			},
-		};
-		const total = await prisma.user.count({
-			where,
-			orderBy: { username: 'asc' },
-		});
-		const data = await prisma.user.findMany({
-			take: +perPage,
-			where,
-			cursor: {
-				id: +lastId,
-			},
-			orderBy: {
-				username: sort ? 'asc' : 'desc',
-			},
-		});
-		return Pagination.result(total, perPage, data);
-	}
-
-	@Security('bearer_auth')
-	@Get('{id}')
-	async view(@Path() id: number): Promise<User> {
-		const where = { id };
+	@Get('me')
+	async me(userJwt: any): Promise<UserViewDto> {
+		const where = { id: userJwt.id };
 		const data = await prisma.user.findFirst({ where });
 		if (!data) {
 			throw new HttpException(
@@ -104,21 +74,6 @@ export class UserService {
 				HTTP_STATUS.NOT_FOUND
 			);
 		}
-		return data;
-	}
-
-	@Security('bearer_auth')
-	@Delete('{id}')
-	async delete(@Path() id: number): Promise<number> {
-		await this.view(id);
-		const where = { id };
-		const data = await prisma.user.delete({ where });
-		if (data) {
-			throw new HttpException(
-				'Gagal menghapus data',
-				HTTP_STATUS.CONFLICT
-			);
-		}
-		return data;
+		return plainToClass(UserViewDto, data);
 	}
 }
