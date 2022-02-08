@@ -14,7 +14,8 @@
 		"swagger:koa": "npx tsoa spec --configuration apps/koa-app/tsoa.json",
 		"swagger:auth": "npx tsoa spec --configuration apps/auth-app/tsoa.json",
 		"swagger:sample": "npx tsoa spec --configuration apps/sample-app/tsoa.json",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"postinstall": "chmod +x ./generate-prisma.sh && ./generate-prisma.sh"
 	},
 	"private": true,
 	"dependencies": {

@@ -4,10 +4,10 @@ import {
 	HTTP_STATUS,
 	JwtSign,
 } from '@exp/shared';
-import { plainToClass, classToPlain, instanceToPlain } from 'class-transformer';
+import { plainToClass, instanceToPlain } from 'class-transformer';
 import * as bcrypt from 'bcryptjs';
 import { validate, ValidationError } from 'class-validator';
-import { Body, Get, Path, Post, Route, Security, Tags } from 'tsoa';
+import { Body, Get, Post, Route, Security, Tags } from 'tsoa';
 import User from '../../../entity/User';
 import prisma from '../../../utils/database/prisma';
 import UserRegisterDto from '../dto/UserRegisterDto';
