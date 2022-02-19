@@ -18,7 +18,7 @@ const app = new Koa();
 const rpc = new RpcObserver(appName);
 
 // Init APM
-ApmMonitoring.init(GlobalConfig, appName);
+// ApmMonitoring.init(GlobalConfig, appName);
 
 // Helmet
 app.use(
