@@ -1,0 +1,35 @@
+version: '3.7'
+
+networks:
+    generic_network:
+        name: generic_network
+
+services:
+    exp-service-sample:
+        container_name: exp-service-sample
+        build:
+            context: ../../
+            cache_from:
+                - exp-base-image:nx-base
+            dockerfile: ./apps/sample-app/Dockerfile
+            args:
+                APP_NAME: 'sample-app'
+                BUILD_FLAG: ''
+        image: exp-service-sample:nx-dev
+        ports:
+            - 3902:3002
+            - 5002:5002
+        environment:
+            - NODE_ENV=production
+            - APP_NAME=tsnext
+            - JWT_SECRET=VTwUrUEeuyBTL
+            - APM_SERVERURL=
+            - ELASTIC_NODE=
+            - ELASTIC_USERNAME=
+            - ELASTIC_PASSWORD=
+            - PORT=3002
+            - PORT_RPC=5002
+            - DATABASE_URL=postgresql://root:Katasandi2@generic_db:5432/exp-dev?schema=sample
+        networks:
+            - generic_network
+        restart: on-failure

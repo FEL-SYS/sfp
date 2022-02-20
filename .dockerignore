@@ -8,5 +8,6 @@ npm-debug.log
 Dockerfile*
 docker-compose*
 LICENSE
-*.sh
 *.lock
+dist
+tmp

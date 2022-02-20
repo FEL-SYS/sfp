@@ -75,13 +75,13 @@ npx nx workspace-generator basic-crud --project=koa-app --module=student --class
 Command
 
 ```sh
-sh ./build-proto.sh [path-to-proto] [path-to-generated-proto]
+sh ./script/sh/build-proto.sh [path-to-proto] [path-to-generated-proto]
 ```
 
 Example
 
 ```sh
-sh ./build-proto.sh ./libs/feature/proto/song.proto ./libs/feature/src/proto
+sh ./script/sh/build-proto.sh ./libs/feature/proto/song.proto ./libs/feature/src/proto
 ```
 
 ## testing

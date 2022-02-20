@@ -9,3 +9,5 @@ Progress
 Test
 
 Backlog
+
+docker build . -t exp-base-image:nx-base
