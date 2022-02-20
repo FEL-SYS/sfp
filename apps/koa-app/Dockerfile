@@ -13,4 +13,4 @@ FROM exp-base-image:nx-base
 WORKDIR /app
 COPY --from=builder /app/builder ./
 
-CMD ["node", "./dist/apps/auth-app/main.js"]
+CMD ["node", "./dist/apps/koa-app/main.js"]

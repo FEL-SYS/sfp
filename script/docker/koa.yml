@@ -1,0 +1,33 @@
+version: '3.7'
+
+networks:
+    generic_network:
+        name: generic_network
+
+services:
+    exp-service-koa:
+        container_name: exp-service-koa
+        build:
+            context: ../../
+            cache_from:
+                - exp-base-image:nx-base
+            dockerfile: ./apps/koa-app/Dockerfile
+            args:
+                APP_NAME: 'koa-app'
+                BUILD_FLAG: ''
+        image: exp-service-koa:nx-dev
+        ports:
+            - 3903:3003
+        environment:
+            - NODE_ENV=production
+            - APP_NAME=tsnext
+            - JWT_SECRET=VTwUrUEeuyBTL
+            - APM_SERVERURL=
+            - ELASTIC_NODE=
+            - ELASTIC_USERNAME=
+            - ELASTIC_PASSWORD=
+            - PORT=3003
+            - DATABASE_URL=postgresql://root:Katasandi2@generic_db:5432/exp-dev?schema=auth
+        networks:
+            - generic_network
+        restart: on-failure
