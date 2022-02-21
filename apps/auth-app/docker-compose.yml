@@ -1,14 +1,14 @@
-version: "3.7"
+version: '3.7'
 services:
-  exp_service_auth:
-    image: exp_service_auth:latest
-    container_name: exp_service_auth
-    env_file: .env
-    volumes:
-      - ../:/app
-    networks:
-      - generic_network
+    exp_service_auth:
+        image: exp_service_auth:latest
+        container_name: exp_service_auth
+        env_file: .env
+        volumes:
+            - ../:/app
+        networks:
+            - generic_network
 
 networks:
-  generic_network:
-    name: generic_network
+    generic_network:
+        name: generic_network
